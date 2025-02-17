@@ -87,12 +87,15 @@ ax3.set_ylabel('Precipitación acumulada [mm]', fontsize = 10)
 #ax3.set_title('Precipitación acumulada Cota Cota', fontsize = 15)
 ax3.legend(handles = [lin, lin2, lin3])
 
+nownow = (dt.datetime.now() + dt.timedelta(hours = -4)).strftime('%d%b %H:%M')
+nowtxt = 'Última ejecución ' + nownow
 last_date = df.datetime.to_list()[-1]
-last_date = 'Última actualización ' + dt.datetime.strftime(last_date, '%d%b %H:%M')
+last_date = 'Último dato ' + dt.datetime.strftime(last_date, '%d%b %H:%M')
 last_rain = df.rain.cumsum().to_list()[-1]
 txt = f'Precipitación acumulada\n {round(last_rain,1)}mm'
 ax3.annotate(txt, (0.96,0.01), xycoords='axes fraction', ha = 'right', fontsize = 12)
 ax3.annotate(last_date, (0.96,0.01), xycoords='figure fraction', ha = 'right', fontsize = 6)
+ax3.annotate(nowtxt, (0.96,0.002), xycoords='figure fraction', ha = 'right', fontsize = 6)
 
 
 ax1.set_title('PRCP CHACALTAYA', fontsize = 12)
